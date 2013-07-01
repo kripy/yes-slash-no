@@ -1,0 +1,36 @@
+@import "h5bp";
+@include h5bp-normalize;
+@include h5bp-base-styles;
+@include h5bp-chromeframe;
+
+//Start custom styles.
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+}
+
+#center {
+    position: relative;
+    display: block;
+    top: 50%;
+    margin-top: -1000px;
+    height: 2000px;
+    text-align: center;
+    line-height: 2000px;
+}    
+#wrap {
+    line-height: 0;
+}
+#wrapper {
+    vertical-align: middle;
+    font-family: courier-new, sans-serif;
+	font-size: 30em;
+	text-transform: uppercase;
+}
+
+@include h5bp-helpers;
+@include h5bp-media;
