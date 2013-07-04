@@ -51,10 +51,10 @@ class App < Sinatra::Base
   def self.get_or_post(path, opts={}, &block)
     get(path, opts, &block)
     post(path, opts, &block)
-  end   
+  end
 
   get "/" do
-    @page_title = "Website Name"
+    @page_title = ENV['WEBSITE_NAME']
     answer = JSON.parse(File.open(app_json).read)
     @answer = answer["answer"]
 

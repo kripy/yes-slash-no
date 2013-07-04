@@ -13,10 +13,11 @@ $ git clone git@github.com:/kripy/yes-slash-no yes-slash-no
 $ cd yes-slash-no
 ```
 
-You'll need to create an ```.env``` file in the root directory of the project for storing a single environment variable (more about this later). The file should look like this:
+You'll need to create an ```.env``` file in the root directory of the project for storing environment variables (more about this later). The file should look like this:
 
 ```
 YSN_ROUTE=switch
+WEBSITE_NAME='Is it friday yet?'
 ```
 
 Now fire it up:
@@ -27,7 +28,7 @@ $ foreman start
 
 Open up a browser at ```http://localhost:5000/```: now you're cooking! Visit ```http://localhost:5000/switch``` to change the website from YES to NO. Visit ```http://localhost:5000/``` to see your change.
 
-The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID, update your ```.env``` file (as well as the Heroku envoironment variable below), and email the URL to yourself for safe keeping. That way you can switch the website over from the comfort of your favourite email client. 
+The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID, update your ```.env``` file (as well as the Heroku envoironment variable below), and email the URL to yourself for safe keeping. That way you can switch the website over from the comfort of your favourite email client.
 
 ## Deployment
 
@@ -44,10 +45,10 @@ $ heroku create
 $ git push heroku master
 ```
 
-You'll need to add the environment variable. I've left it as ```switch``` for the purpose of my documentation.
+You'll need to add the environment variables. I've left it as ```switch``` for the purpose of my documentation.
 
 ```
-$ heroku config:set YSN_ROUTE=switch
+$ heroku config:set YSN_ROUTE=switch WEBSITE_NAME='Does this site answer a question?'
 $ heroku open
 ```
 
