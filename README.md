@@ -1,12 +1,6 @@
-# Frank's Famous
+# Yes Slash No
 
-Frank's Famous is an extension of [Pizza Man](https://github.com/kripy/pizza-man), bringing in [Sass](http://sass-lang.com/) support via [Sinatra Support](https://github.com/sinefunc/sinatra-support/), [HTML5 boilerplate](http://html5boilerplate.com/) support via [Compass H5bp](https://github.com/sporkd/compass-h5bp), and asset management via [Sinatra AssetPack](https://github.com/rstacruz/sinatra-assetpack). Phew. 
-
-Again it's a Heroku ready [Sinatra](http://www.sinatrarb.com/) app, running on [Unicorn](http://unicorn.bogomips.org/) with  [Mustache](http://mustache.github.io/) for templating.
-
-Check the code for the only real gotcha I came across, with Heroku seemingly not being able to deal with asset minification yet the assets were minified anyhow. Go figure.
-
-I also added an extra helper to load [Modernizr](http://modernizr.com/) before the HTML body start tag, as per the HTML5 boilerplate convention, with the rest of the JavaScript includes loading right before the end body tag.
+Use Yes Slash No to, quickly, knock up a website that answers a question in the form of [Is It Christmas](http://isitchristmas.com/), [Is It Thanksgiving Yet?](http://www.isitthanksgivingyet.com/), and [Is Julia Gillard Still Prime Minister?](http://isjuliagillardstillpm.com/). Classy.
 
 ## Installation
 
@@ -15,12 +9,25 @@ Firstly, make sure you've [installed Ruby](http://www.ruby-lang.org/en/). Also, 
 Then in terminal, clone me:
 
 ```
-$ git clone git@github.com:/kripy/franks-famous my-franks-famous
-$ cd my-franks-famous
+$ git clone git@github.com:/kripy/yes-slash-no yes-slash-no
+$ cd yes-slash-no
+```
+
+You'll need to create an ```.env``` file in the root directory of the project for storing a single environment variable (more about this later). The file should look like this:
+
+```
+YSN_ROUTE=switch
+```
+
+Now fire it up:
+
+```
 $ foreman start
 ```
 
-Open up a browser at ```http://localhost:5000/```: now you're cooking!
+Open up a browser at ```http://localhost:5000/```: now you're cooking! Visit ```http://localhost:5000/switch``` to change the website from YES to NO. Visit ```http://localhost:5000/``` to see your change.
+
+The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID an email the URL to yourself for safe keeping.
 
 ## Deployment
 
@@ -29,16 +36,22 @@ If you don't already have one, sign up for a [Heroku](https://www.heroku.com/) a
 In terminal, cd into your app:
 
 ```
-$ cd my-franks-famous
+$ cd yes-slash-no
 $ git init
 $ git add .
 $ git commit -m "init"
 $ heroku create
 $ git push heroku master
+```
+
+You'll need to add the environment variable. I've left it as ```switch``` for the purpose of my documentation.
+
+```
+$ heroku config:set YSN_ROUTE=switch
 $ heroku open
 ```
 
-Then enjoy your slice of pizza pie!
+Say hello yes / no.
 
 ## MIT LICENSE
 
