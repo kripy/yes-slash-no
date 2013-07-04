@@ -51,7 +51,7 @@ class App < Sinatra::Base
   def self.get_or_post(path, opts={}, &block)
     get(path, opts, &block)
     post(path, opts, &block)
-  end   
+  end
 
   get "/" do
     @page_title = "Website Name"
@@ -73,5 +73,6 @@ class App < Sinatra::Base
     else
       File.open(File.open(app_json), 'w') { |file| file.write("{\"answer\": \"yes\"}") }
     end
+    redirect '/'
   end
 end
