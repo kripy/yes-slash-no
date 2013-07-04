@@ -1,6 +1,6 @@
 # Yes Slash No
 
-Use Yes Slash No to, quickly, knock up a website that answers a question in the form of [Is It Christmas](http://isitchristmas.com/), [Is It Thanksgiving Yet?](http://www.isitthanksgivingyet.com/), and [Is Julia Gillard Still Prime Minister?](http://isjuliagillardstillpm.com/). Classy.
+Use Yes Slash No to, quickly, knock up a website that answers a question in the form of [Is It Christmas](http://isitchristmas.com/), [Is It Thanksgiving Yet?](http://www.isitthanksgivingyet.com/), [Yes, Margaret Thatcher is dead](http://www.isthatcherdeadyet.co.uk/), and [Is Julia Gillard Still Prime Minister?](http://isjuliagillardstillpm.com/). Classy.
 
 ## Installation
 
@@ -27,7 +27,7 @@ $ foreman start
 
 Open up a browser at ```http://localhost:5000/```: now you're cooking! Visit ```http://localhost:5000/switch``` to change the website from YES to NO. Visit ```http://localhost:5000/``` to see your change.
 
-The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID an email the URL to yourself for safe keeping.
+The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID, update your ```.env``` file (as well as the Heroku envoironment variable below), and email the URL to yourself for safe keeping. That way you can switch the website over from the comfort of your favourite email client. 
 
 ## Deployment
 
@@ -51,7 +51,7 @@ $ heroku config:set YSN_ROUTE=switch
 $ heroku open
 ```
 
-Say hello to yes / no.
+Say hello yes / no. Now all you need is to set up a [custom domain](https://devcenter.heroku.com/articles/custom-domains) and away you go.
 
 ## MIT LICENSE
 
