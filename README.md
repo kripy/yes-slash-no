@@ -51,7 +51,7 @@ $ heroku config:set YSN_ROUTE=switch
 $ heroku open
 ```
 
-Say hello yes / no.
+Say hello to yes / no.
 
 ## MIT LICENSE
 
