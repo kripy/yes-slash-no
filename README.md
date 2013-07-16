@@ -51,7 +51,7 @@ $ heroku config:set YSN_ROUTE=switch
 $ heroku open
 ```
 
-Say hello yes / no. Now all you need is to set up a [custom domain](https://devcenter.heroku.com/articles/custom-domains) and away you go.
+Say hello to yes / no. Now all you need is to set up a [custom domain](https://devcenter.heroku.com/articles/custom-domains) and away you go.
 
 ## MIT LICENSE
 
