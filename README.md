@@ -9,8 +9,9 @@ Firstly, make sure you've [installed Ruby](http://www.ruby-lang.org/en/). Also, 
 Then in terminal, clone me:
 
 ```
-$ git clone git@github.com:/kripy/yes-slash-no yes-slash-no
+$ git clone https://github.com/kripy/yes-slash-no.git
 $ cd yes-slash-no
+$ bundle install
 ```
 
 You'll need to create an ```.env``` file in the root directory of the project for storing a single environment variable (more about this later). The file should look like this:
@@ -27,7 +28,7 @@ $ foreman start
 
 Open up a browser at ```http://localhost:5000/```: now you're cooking! Visit ```http://localhost:5000/switch``` to change the website from YES to NO. Visit ```http://localhost:5000/``` to see your change.
 
-The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID, update your ```.env``` file (as well as the Heroku envoironment variable below), and email the URL to yourself for safe keeping. That way you can switch the website over from the comfort of your favourite email client. 
+The reason for this switch is simple: it allows you to flick it over without having to redeploy. But please, do not leave the route as ```switch``` else users will be able to switch the website back and forth. My suggestion is to [generate](http://www.famkruithof.net/uuid/uuidgen) a UUID, update your ```.env``` file (as well as the Heroku envoironment variable below), and email the URL to yourself for safe keeping. That way you can switch the website over from the comfort of your favourite email client.
 
 ## Deployment
 
