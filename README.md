@@ -17,6 +17,9 @@ You'll need to create an ```.env``` file in the root directory of the project fo
 
 ```
 YSN_ROUTE=switch
+YSN_ANSWER=NO
+YSN_APP_NAME=boiling-meadow-1520
+YSN_APP_KEY=XXX
 ```
 
 Now fire it up:

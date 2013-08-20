@@ -1,6 +1,10 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    activesupport (3.2.13)
+      i18n (= 0.6.1)
+      multi_json (~> 1.0)
+    backports (3.3.3)
     chunky_png (1.2.8)
     coffee-script (2.2.0)
       coffee-script-source
@@ -12,18 +16,31 @@ GEM
       sass (~> 3.1)
     compass-h5bp (0.1.1)
       compass
+    descendants_tracker (0.0.1)
+    excon (0.25.1)
     execjs (1.4.0)
       multi_json (~> 1.0)
     fssm (0.2.10)
+    heroku-api (0.3.13)
+      excon (~> 0.25.0)
+    httparty (0.11.0)
+      multi_json (~> 1.0)
+      multi_xml (>= 0.5.2)
+    i18n (0.6.1)
     jsmin (1.0.1)
     json (1.8.0)
     kgio (2.7.4)
     multi_json (1.7.7)
+    multi_xml (0.5.3)
     mustache (0.99.4)
     rack (1.2.2)
     rack-test (0.6.2)
       rack (>= 1.0)
     raindrops (0.10.0)
+    ruroku (0.0.3)
+      activesupport (~> 3.2.5)
+      heroku-api (~> 0.2)
+      virtus (~> 0.5)
     sass (3.2.9)
     sinatra (1.2.6)
       rack (~> 1.1)
@@ -40,6 +57,9 @@ GEM
       kgio (~> 2.6)
       rack
       raindrops (~> 0.7)
+    virtus (0.5.5)
+      backports (~> 3.3)
+      descendants_tracker (~> 0.0.1)
 
 PLATFORMS
   ruby
@@ -48,8 +68,10 @@ DEPENDENCIES
   coffee-script
   compass
   compass-h5bp
+  httparty
   json
   mustache
+  ruroku
   sinatra
   sinatra-assetpack
   sinatra-support

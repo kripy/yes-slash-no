@@ -5,12 +5,12 @@ require "compass-h5bp"
 require "sinatra/support"
 require "mustache/sinatra"
 require "json"
+require "httparty"
+require "base64"
 
 class App < Sinatra::Base
   base = File.dirname(__FILE__)
   set :root, base
-
-  app_json = "#{base}/app/result.json"
 
   register Sinatra::AssetPack
   register Sinatra::CompassSupport
@@ -55,23 +55,30 @@ class App < Sinatra::Base
 
   get "/" do
     @page_title = "Website Name"
-    answer = JSON.parse(File.open(app_json).read)
-    @answer = answer["answer"]
+    @answer = ENV["YSN_ANSWER"]
 
     mustache :index
   end
 
   # Switches between Yes / No. Handy when you're on the move.
   # Email the route to yourself and keep it handy.
-  # Variable store in .env file.
-  get "/" + ENV['YSN_ROUTE'] do
-    answer = JSON.parse(File.open(app_json).read)
-    answer = answer["answer"]
-
+  get "/" + ENV["YSN_ROUTE"] do
+    answer = ENV["YSN_ANSWER"]
+    
     if answer == "yes"
-      File.open(File.open(app_json), 'w') { |file| file.write("{\"answer\": \"no\"}") }
+      response = HTTParty.patch("https://api.heroku.com/apps/" + ENV["YSN_APP_NAME"] + "/config-vars", 
+        :body => { :YSN_ANSWER => "no" }.to_json, 
+        :headers => { "Accept" => "application/vnd.heroku+json; version=3",
+          "Authorization" => ENV["YSN_APP_KEY"],
+          "Content-Type" => "application/json"})
     else
-      File.open(File.open(app_json), 'w') { |file| file.write("{\"answer\": \"yes\"}") }
+      response = HTTParty.patch("https://api.heroku.com/apps/" + ENV["YSN_APP_NAME"] + "/config-vars",
+        :body => { :YSN_ANSWER => "yes" }.to_json,
+        :headers => { "Accept" => "application/vnd.heroku+json; version=3",
+          "Authorization" => ENV["YSN_APP_KEY"],
+          "Content-Type" => "application/json"})
     end
+
+    mustache :index
   end
 end
