@@ -47,15 +47,27 @@ class App < Sinatra::Base
     @js_modernizr = js :app_js_modernizr
   end
 
-  # Function allows both get / post.
-  def self.get_or_post(path, opts={}, &block)
-    get(path, opts, &block)
-    post(path, opts, &block)
-  end   
+  helpers do
+    # Function allows both get / post.
+    def self.get_or_post(path, opts={}, &block)
+      get(path, opts, &block)
+      post(path, opts, &block)
+    end   
+
+    # Makes the call to Heroku to get live answer.
+    def get_answer()
+      response = HTTParty.get("https://api.heroku.com/apps/" + ENV["YSN_APP_NAME"] + "/config-vars", 
+        :headers => { "Accept" => "application/vnd.heroku+json; version=3",
+          "Authorization" => ENV["YSN_APP_KEY"],
+          "Content-Type" => "application/json"})
+      parsed = JSON.parse(response.body)
+      parsed["YSN_ANSWER"]
+    end    
+  end
 
   get "/" do
     @page_title = "Website Name"
-    @answer = ENV["YSN_ANSWER"]
+    @answer = get_answer()
 
     mustache :index
   end
@@ -63,22 +75,31 @@ class App < Sinatra::Base
   # Switches between Yes / No. Handy when you're on the move.
   # Email the route to yourself and keep it handy.
   get "/" + ENV["YSN_ROUTE"] do
-    answer = ENV["YSN_ANSWER"]
-    
+    answer = get_answer()
+
     if answer == "yes"
       response = HTTParty.patch("https://api.heroku.com/apps/" + ENV["YSN_APP_NAME"] + "/config-vars", 
         :body => { :YSN_ANSWER => "no" }.to_json, 
         :headers => { "Accept" => "application/vnd.heroku+json; version=3",
           "Authorization" => ENV["YSN_APP_KEY"],
           "Content-Type" => "application/json"})
+      puts response
     else
       response = HTTParty.patch("https://api.heroku.com/apps/" + ENV["YSN_APP_NAME"] + "/config-vars",
         :body => { :YSN_ANSWER => "yes" }.to_json,
         :headers => { "Accept" => "application/vnd.heroku+json; version=3",
           "Authorization" => ENV["YSN_APP_KEY"],
           "Content-Type" => "application/json"})
+      puts response
     end
 
     mustache :index
   end
+
+  get "/try" do
+    answer = get_answer()
+    answer = answer["YSN_ANSWER"]
+    puts answer
+
+  end  
 end
