@@ -73,8 +73,8 @@ You'll need to add the environment variables. I recommend updating ```switch``` 
 
 ```
 $ heroku config:set YSN_ROUTE=switch
-$ heroku config:set YSN_APP_NAME=boiling-meadow-1520
-$ heroku config:set YSN_APP_KEY=XXX
+$ heroku config:set YSN_APP_NAME=<your app name as noted above>
+$ heroku config:set YSN_APP_KEY=<the API key you generated above>
 ```
 
 Say hello to yes / no. Now all you need is to set up a [custom domain](https://devcenter.heroku.com/articles/custom-domains) and away you go.
