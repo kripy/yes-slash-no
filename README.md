@@ -38,7 +38,7 @@ As the documentation [states](https://devcenter.heroku.com/articles/platform-api
 
 To get your Heroku API token, run ```heroku auth:token```. Your email address is the email address you used to register with Heroku.
 
-To generate the API key run ```echo email address : auth token | base64``` from the command line. Note the space either side of the colon. They is NOT generated correctly without it. Took me a while to figure that one out.
+To generate the API key run ```echo email address : auth token | base64``` from the command line. Note the space either side of the colon. The key is NOT generated correctly without it. Took me a while to figure that one out.
 
 Now, create an ```.env``` file in the root directory of the project. The file should look like this:
 
@@ -65,7 +65,6 @@ As you've already create the app on Heroku, commit your updated code and push:
 ```
 $ git add .
 $ git commit -m "Deploy time."
-$ heroku create
 $ git push heroku master
 ```
 

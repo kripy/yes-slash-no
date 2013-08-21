@@ -93,13 +93,6 @@ class App < Sinatra::Base
       puts response
     end
 
-    mustache :index
+    redirect '/'
   end
-
-  get "/try" do
-    answer = get_answer()
-    answer = answer["YSN_ANSWER"]
-    puts answer
-
-  end  
 end
